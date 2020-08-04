@@ -1,0 +1,65 @@
+<div mat-dialog-content style="margin: 10px; padding: 10px">
+    <div class="mat-display-2" style="margin: 15px; justify-content: space-between;">
+        <div>{{this.metadata.course_number}}: {{this.metadata.course_title}}</div>
+        <div class="mat-title"> ({{this.metadata.term}} {{this.metadata.year}})</div>
+    </div>
+    <mat-divider></mat-divider>
+    <h3 class="mat-display-1" style="margin: 15px; margin-bottom: 10px">
+        Create Assignment</h3>
+    <div class="row" style="margin-top: 30px">
+        <div class="col-md-7" style="margin-right: 30px">
+            <div style="margin-top: 10px;  border-radius: 5px; padding: 20px">
+                <form [formGroup]="newAssignForm">
+                    <div class="row mat-typography">
+                        <div class="col-md-3">
+                            <h3 style="margin-top: 7px;">Assignment Name: </h3>
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field appearance="outline" style="width: 90%;">
+                                <input matInput type="text" formControlName="assign_name" required>
+                            </mat-form-field>
+                            <div class="mat-typography">The assignment name should not contain any spaces.</div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row mat-typography">
+
+                        <div class="col-md-3">
+                            <h3>Upload Assignment pdf:</h3>
+                        </div>
+                        <div class="col">
+                            <h3><input style="margin-left: 4px;" type="file" formControlName="assign_pdf"
+                                    (change)="onFileSelected($event)" /></h3>
+                        </div>
+                    </div><br>
+                    <div class="row mat-typography">
+
+                        <div class="col-md-3">
+                            <h3>Upload answer-key pdf:</h3>
+                        </div>
+                        <div class="col">
+                            <h3><input style="margin-left: 4px;" type="file" formControlName="answer_pdf"
+                                    (change)="onAnsKeySelected($event)" />
+                            </h3>
+                        </div>
+                    </div><br>
+                    <div style="width: 100%; padding: 5px; margin: 10px">
+                        <button (click)="onSubmit()" mat-button
+                            style=" background-color: rgb(0, 53, 139); color: white ">Create Assignment </button>
+                    </div>
+                    <div style="width: 100%; padding: 5px; margin: 10px">
+                        <button (click)="goBack()" mat-button
+                            style=" background-color: rgb(0, 53, 139); color: white ">Cancel </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+</div>

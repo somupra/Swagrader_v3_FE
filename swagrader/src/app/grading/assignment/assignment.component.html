@@ -1,0 +1,164 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened class="dashboardnav">
+        <div style="overflow-y: hidden">
+          <div class="mat-typography" style="padding:5px; size:100px">
+            <div>
+              <mat-icon style="margin-bottom: 0px; margin-left: 4px;">insert_drive_file</mat-icon>
+             <span [routerLink]="['/in-course',courseDetail.course_number,'assignment', metadata.title,'outline']" class="links" style="font-size: 20px; color: white; cursor: pointer;"> Outline </span>
+                <mat-icon *ngIf="metadata.under_config===2 " style="color:white;  font-size: 20px">check_circle</mat-icon>
+            </div>
+          </div>
+          <hr>
+          <div class="mat-typography" style="padding:5px; size:100px">
+            <div>
+              <mat-icon style="margin-bottom: 0px; margin-left: 4px">publish</mat-icon>
+                <span [routerLink]="['/in-course',courseDetail.course_number,'assignment', metadata.title,'upload-scans']" *ngIf="metadata.under_mapping!==0" class="links"
+                  style="font-size: 20px; color: white; cursor: pointer;" > Upload Scans </span>
+                <span  *ngIf="metadata.under_mapping===0" style=" font-size: 20px"> Upload Scans </span>
+                <mat-icon *ngIf="metadata.under_mapping===2" style="color:white; font-size: 20px">check_circle
+                  </mat-icon>
+              
+            </div>
+          </div>
+          <hr>
+          <div class="mat-typography" style="padding:5px; size:100px">
+            <div>              
+              <mat-icon style="margin-bottom: 0px; margin-left: 4px">linear_scale</mat-icon>
+              <span [routerLink]="['/in-course',courseDetail.course_number,'assignment', metadata.title,'mapping']" *ngIf="metadata.under_mapping ===2|| metadata.under_mapping===3" class="links"
+                  style=" font-size: 20px; color: white; cursor: pointer;"> Mapping </span>
+                <span  *ngIf="metadata.under_mapping ===0|| metadata.under_mapping===1" style=" font-size: 20px">  Mapping </span>
+                <mat-icon *ngIf="metadata.under_mapping===3" style="color:white; font-size: 20px">check_circle
+                  </mat-icon>
+            </div>
+          </div>
+          <hr>
+          <div class="mat-typography" style="padding:5px; size:100px">
+            <div>
+                <mat-icon style="margin-bottom: 0px; margin-left: 4px">border_color</mat-icon>
+                <span *ngIf="metadata.under_grading === 1 " [routerLink]="['/in-course',courseDetail.course_number,'assignment', metadata.title,'grading-settings']"  class="links" style="font-size: 20px; color: white; cursor: pointer"> Grading </span>
+                <span [routerLink]="['/in-course',courseDetail.course_number,'assignment', metadata.title,'grading-progress']" *ngIf="metadata.under_grading === 2 " class="links" style="font-size: 20px; color: white; cursor: pointer"> Grading </span>
+                <span [routerLink]="['/in-course',courseDetail.course_number,'assignment', metadata.title,'grading-progress']" *ngIf="metadata.under_grading === 3 " class="links" style="font-size: 20px; color: white; cursor: pointer"> Grading </span>
+
+                <span  *ngIf="metadata.under_grading === 0 " style=" font-size: 20px"> Grading </span>
+                <mat-icon *ngIf="metadata.under_grading === 3" style="color:white; font-size: 20px">check_circle
+                  </mat-icon>
+            </div>
+          </div><hr>
+          <div class="mat-typography" style="padding:5px; size:100px">
+            <div>
+                <mat-icon style="margin-bottom: 0px; margin-left: 4px">border_color</mat-icon>
+                <span [routerLink]="['/in-course',courseDetail.course_number,'assignment', metadata.title,'regrading-progress']" *ngIf="metadata.under_regrading!==0" class="links" style="font-size: 20px; color: white; cursor: pointer;">  Regrading </span>
+                <span  *ngIf="metadata.under_regrading===0" style=" font-size: 20px">  Regrading </span>
+                <mat-icon *ngIf="metadata.under_regrading=== 2" style="color:white; font-size: 20px">check_circle
+                  </mat-icon>
+              
+            </div>
+          </div>
+          <hr style="border-top-color:#cdcdcd">
+          
+          <div class="mat-typography" style="padding:5px; size:100px">
+            <div>
+                <mat-icon style="margin-bottom: 0px; margin-left: 4px">dns</mat-icon>
+                <span *ngIf="metadata.graded===1" class="links" style="font-size: 20px">  Statistics </span>
+                <span *ngIf="metadata.graded===0" style=" font-size: 20px">  Statistics </span>
+            </div>
+          </div>
+        </div>
+        <div class="mat-typography" style="padding:5px; size:100px; position: fixed; bottom: 10px;">
+          <div>
+              <mat-icon style="margin-bottom: 0px; margin-left: 4px">home</mat-icon>
+                  <span  [routerLink]="['/in-course', courseDetail.course_number]" class="links" style="font-size: 20px; padding-bottom:4px; color: white; cursor: pointer;">  Dashboard </span>
+            
+          </div></div>
+      </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- <alert></alert> -->
+
+    <div class="row" style="margin-top: 10px">
+      <div class="col" style=" height: 900px; margin-right: 30px">
+        <pdf-viewer [src]="pdf_link" [render-text]="true" style="display: block;"></pdf-viewer>
+        
+      </div>
+
+
+      <div class="col">
+        <div class="mat-display-1" style="margin-bottom: 10px">{{courseDetail.course_number}}: {{courseDetail.course_title}}</div>
+          <div class="mat-typography"> ({{courseDetail.term}} {{courseDetail.year}})</div>
+          <h2 class="mat-display-1" style="margin-bottom: 10px">
+            Set Outline: <span
+            style="font-family: monospace; background-color: rgb(143, 222, 236); color:rgb(0, 53, 139); padding: 6px; border: dotted rgb(0, 53, 139); border-radius: 4px"
+            class="mat-display-1">{{metadata.title}}</span></h2>
+        
+        <mat-divider></mat-divider>
+        
+        <div style="overflow-x: hidden; overflow-y: scroll; height:700px; margin-top: 10px; border: 2pt dotted rgb(0, 53, 139); border-radius: 5px; padding: 20px">
+        <form #assignmentOutline="ngForm" (submit)="processForm( assignmentOutline )">
+          <div>
+
+          <div class="row" style="margin-left:5px" *ngFor="let question of form.questions; let qindex = index">
+            <div class="col-md-1" class="mat-display-1" style="font-size:20px; margin-top: 10px">{{qindex+1}}</div>
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Question Title</mat-label>
+                <input matInput #nameControl="ngModel" name="name_{{question.id}}" [(ngModel)]="question.name">
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Marks</mat-label>
+                <input #nameControl="ngModel" matInput type="number" name="marks_{{question.id}}" [(ngModel)]="question.marks">
+              </mat-form-field>
+            </div>
+            <div class="col-md-1">
+              <mat-icon class="handleclick" (click)="addSubquestion(qindex)" style="color: darkblue; margin-bottom: 0px; margin-left: 4px; size: 35px">add</mat-icon>
+            </div>
+            <div class="col-md-1">
+              <mat-icon class="handleclick" (click)="removeQuestion(qindex)" style="color: darkblue; margin-bottom: 0px; margin-left: 4px; size: 35px">clear</mat-icon>
+            </div>
+            <br>
+            
+            <div *ngIf = "question.newques===false">
+            <div *ngFor = "let sub_question of question.subquestions; let sqindex = index" class="row" style="margin-left:25px ">
+
+              <div class="col-md-1" class="mat-display-1" style="font-size:20px; margin-top: 10px">{{qindex+1}}.{{sqindex+1}}</div>
+              <div class="col-md-6">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                  
+                  <input matInput #nameControl="ngModel" name="sname_{{question.id}}_{{sub_question.id}}" [(ngModel)]="sub_question.name">
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                  
+                  <input matInput #nameControl="ngModel" matInput type="number" name="smarks_{{question.id}}_{{sub_question.id}}" [(ngModel)]="sub_question.marks">
+                </mat-form-field>
+              </div>
+              <div class="col-md-1">
+                <mat-icon class="handleclick" (click) ="removeSubquestion(qindex,sqindex)" style="color: darkblue; margin-bottom: 0px; margin-left: 4px; size: 15px">clear</mat-icon>
+              </div><br>
+            </div></div>
+  
+            </div>
+          </div>
+        </form>
+        
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="footer">
+        <button [routerLink]="['/in-course', courseDetail.course_number]" mat-button style="margin-right: 20px; color: white; background-color: rgb(0, 16, 161) ">
+            Go back <mat-icon style="margin-bottom: 0px; margin-left: 4px">keyboard_arrow_left</mat-icon>
+          </button>
+        <button (click)= "addQuestion()" mat-button style="margin-right: 20px; color: white; background-color: rgb(0, 16, 161) ">New Question <mat-icon
+          style="color: white; margin-bottom: 0px; margin-left: 4px">add</mat-icon></button>
+      
+      <button (click)="processForm(assignmentOutline)" mat-button style="margin-right: 20px; color: white; background-color: rgb(0, 16, 161) ">
+        Save Outline <mat-icon style="margin-bottom: 0px; margin-left: 4px">send</mat-icon>
+      </button>
+    </div>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>

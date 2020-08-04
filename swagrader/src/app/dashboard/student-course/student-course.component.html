@@ -1,0 +1,126 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened class="dashboardnav">
+        <div style="overflow-y: hidden">
+            <mat-icon class="extrastyle">home</mat-icon>
+            <mat-icon class="extrastyle">today</mat-icon>
+            <mat-icon class="extrastyle">school</mat-icon>
+            <mat-icon class="extrastyle">settings</mat-icon>
+            <mat-icon class="extrastyle">info</mat-icon>
+        </div>
+
+        <mat-icon style="position: fixed; bottom: 0;">person</mat-icon>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="mat-display-2" style="margin: 15px; justify-content: space-between;">
+            <div>{{metadata.course_number}}: {{metadata.course_title}}</div>
+            <div class="mat-title"> ({{metadata.term}} {{metadata.year}})</div>
+        </div>
+
+        <mat-divider></mat-divider>
+        <div class="row" style="margin: 5px; margin-bottom: 0px">
+
+            <div class="col mat-typography " style="margin: 5px">
+                <div class="row">
+                    <div class="col"
+                        style="border-style: dotted; border-color:rgb(0, 53, 139); border-radius: 10px; margin: 20px; padding-top: 7px">
+                        <h2>Course Description</h2>
+                        <hr>
+                        <div style="text-align: justify">
+                            <div style="padding: 1px">
+                                <h3> Instructor: {{metadata.instructor}}</h3>
+                                {{metadata.description}}
+                                Click <a href="#">here</a> for more details and Course Policies. <br><br>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col mat-typography"
+                style="border-style: dotted; border-color:rgb(0, 53, 139); border-radius: 10px; margin: 20px; padding-top: 7px">
+                <div style="padding: 4px">
+                    <h2>Course Statistics</h2>
+                    <hr>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div>Assignments: <div class="mat-display-2" style="margin-top: 3px; padding-bottom: 1px">
+                                {{dataSource.length}}</div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col">
+                        <div>Your Average: <div class="mat-display-2" style="margin-top: 3px; padding-bottom: 1px">
+                                {{metadata.average}}%</div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <br><br>
+
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+            <ng-container matColumnDef="sno">
+                <th mat-header-cell *matHeaderCellDef style="background: rgb(0, 53, 139); color: white; width: 80px ">
+                    <h6>S.No.</h6>
+                </th>
+                <td mat-cell *matCellDef="let assignment"> {{assignment.sno}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef style="background: rgb(0, 53, 139); color: white; width: 200px">
+                    <h6>Assignment</h6>
+                </th>
+                <td mat-cell *matCellDef="let assignment"> {{assignment.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="releaseDate">
+                <th mat-header-cell *matHeaderCellDef style="background: rgb(0, 53, 139); color: white; width: 150px">
+                    <h6>Created on</h6>
+                </th>
+                <td mat-cell *matCellDef="let assignment"> {{assignment.releaseDate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="task">
+                <th mat-header-cell *matHeaderCellDef style="background: rgb(0, 53, 139); color: white; width: 150px">
+                    <h6>Task</h6>
+                </th>
+                <td mat-cell *matCellDef="let assignment"> {{assignment.task}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="regrading_requests">
+                <th mat-header-cell *matHeaderCellDef style="background: rgb(0, 53, 139); color: white; width: 150px">
+                    <h6>Regrading Requests</h6>
+                </th>
+                <td mat-cell *matCellDef="let assignment"> {{assignment.regrading_requests}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+
+
+        <div class="footer">
+            <button mat-button (click)="onGoBack()" style="margin-right: 20px; color: white; background-color: rgb(0, 16, 161) ">
+                Go Back <mat-icon style="margin-bottom: 0px; margin-left: 4px">keyboard_arrow_left</mat-icon>
+            </button>
+        </div>
+    </mat-sidenav-content>
+
+
+</mat-sidenav-container>

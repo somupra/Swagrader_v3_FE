@@ -1,0 +1,95 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened class="dashboardnav">
+        <div style="overflow-y: hidden">
+            <mat-icon class="extrastyle">home</mat-icon>
+            <mat-icon class="extrastyle">today</mat-icon>
+            <mat-icon class="extrastyle">school</mat-icon>
+            <mat-icon class="extrastyle">settings</mat-icon>
+            <mat-icon class="extrastyle">info</mat-icon>
+        </div>
+
+        <mat-icon style="position: fixed; bottom: 0;">person</mat-icon>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content style="padding-left: 5%">
+        <div>
+            <div *ngIf="roles.includes('instructor')" class="mat-display-2"
+                style="margin: 15px; justify-content: space-between;">Instructor courses <a mat-mini-fab color="primary"
+                    (click)="createCourse()" style="box-shadow: none">
+                    <mat-icon>add</mat-icon>
+                </a></div>
+            <mat-divider></mat-divider><br>
+            <div fxLayout="row wrap" fxLayoutGap="2%">
+                <ng-container *ngFor="let currentcourse of courses">
+                    <mat-card (click)="onClick(currentcourse)" *ngIf="currentcourse.role === 'in'"
+                        style="margin-bottom: 20px" style="width: 210px; cursor: pointer;">
+                        <mat-card-title>{{currentcourse.course_number}}</mat-card-title>
+                        <mat-card-content>{{currentcourse.course_title}}</mat-card-content>
+                        <mat-card-footer
+                            style="background-color: rgb(0, 53, 139); padding-left: 17px;padding-top: 7px;padding-bottom: 7px; padding-right: 7px;color: white;">
+                            {{currentcourse.term}} {{currentcourse.year}} course
+                        </mat-card-footer>
+                    </mat-card>
+                </ng-container>
+            </div><br><br>
+
+
+            <div *ngIf="roles.includes('student')" class="mat-display-2"
+                style="margin: 15px; justify-content: space-between;">Student courses <button mat-mini-fab
+                    color="primary" (click)="createCourse()" style="box-shadow: none">
+                    <mat-icon>add</mat-icon>
+                </button></div>
+            <mat-divider></mat-divider><br>
+            <div fxLayout="row wrap" fxLayoutGap="2%">
+                <ng-container *ngFor="let currentcourse of courses">
+
+                    <mat-card (click)="onClick(currentcourse)" *ngIf="currentcourse.role == 'st'"
+                        style="margin-bottom: 20px" style="width: 210px; cursor: pointer;">
+
+                        <mat-card-title>{{currentcourse.course_number}}</mat-card-title>
+
+                        <mat-card-content>{{currentcourse.course_title}}</mat-card-content>
+                        <mat-card-footer
+                            style="background-color: rgb(0, 53, 139); padding-left: 17px;padding-top: 7px;padding-bottom: 7px; padding-right: 7px;color: white;">
+                            {{currentcourse.term}} {{currentcourse.year}} course
+                        </mat-card-footer>
+                    </mat-card>
+                </ng-container>
+            </div><br><br>
+
+
+            <div *ngIf="roles.includes('ta')" class="mat-display-2"
+                style="margin: 15px; justify-content: space-between;">Teaching-assistant courses
+                <button mat-mini-fab color="primary" (click)="createCourse()" style="box-shadow: none">
+                    <mat-icon>add</mat-icon>
+                </button></div>
+            <mat-divider></mat-divider><br>
+            <div fxLayout="row wrap" fxLayoutGap="2%">
+                <ng-container *ngFor="let currentcourse of courses">
+                    <mat-card (click)="onClick(currentcourse)" *ngIf="currentcourse.role == 'ta'"
+                        style="margin-bottom: 20px" style="width: 210px; cursor: pointer;">
+
+                        <mat-card-title>{{currentcourse.course_number}}</mat-card-title>
+
+                        <mat-card-content>{{currentcourse.course_title}}</mat-card-content>
+                        <mat-card-footer
+                            style="background-color: rgb(0, 53, 139); padding-left: 17px;padding-top: 7px;padding-bottom: 7px; padding-right: 7px;color: white;">
+                            {{currentcourse.term}} {{currentcourse.year}} course
+                        </mat-card-footer>
+                    </mat-card>
+                </ng-container>
+            </div><br><br>
+        </div>
+        <br><br><br>
+        <div class="footer">
+            <button mat-button style="margin-right: 20px; color: white; background-color: rgb(0, 16, 161) ">
+                Enroll in Course <mat-icon style="margin-bottom: 0px; margin-left: 4px">book</mat-icon>
+            </button>
+            <button mat-button (click)="createCourse()"
+                style="margin-right: 20px; color: white; background-color: rgb(0, 16, 161) ">
+                Create Course <mat-icon style="margin-bottom: 0px; margin-left: 4px">add</mat-icon>
+            </button>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

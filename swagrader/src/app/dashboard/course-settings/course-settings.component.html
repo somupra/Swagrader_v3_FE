@@ -1,0 +1,176 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened class="dashboardnav">
+        <div style="overflow-y: hidden">
+            <mat-icon class="extrastyle">home</mat-icon>
+            <mat-icon class="extrastyle">today</mat-icon>
+            <mat-icon class="extrastyle">school</mat-icon>
+            <mat-icon class="extrastyle">settings</mat-icon>
+            <mat-icon class="extrastyle">info</mat-icon>
+        </div>
+
+        <mat-icon style="position: fixed; bottom: 0;">person</mat-icon>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="margin: 10px; padding: 10px">
+            <div class="mat-display-2" style="padding: 4px; margin-bottom: 10px">Course Settings</div>
+            <mat-divider style="padding: 0px; margin:0px"></mat-divider>
+            <div class="row" style="margin-top: 30px">
+                <div class="col mat-typography" style="margin-right: 30px">
+
+                    <div
+                        style="border-style: dotted; border-color: rgb(0, 53, 139);  border-radius: 5px; padding: 20px">
+                        <h2>Basic Settings</h2>
+                        <hr>
+                        <mat-form-field appearance="outline" style="width: 100%;">
+                            <mat-label>Course Number</mat-label>
+                            <input matInput type="text">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" style="width: 100%;">
+                            <mat-label>Course Name</mat-label>
+                            <input matInput type="text">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" style="width: 100%;">
+                            <mat-label>Course Description</mat-label>
+                            <textarea matInput></textarea>
+                        </mat-form-field>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline" style="width: 100%;">
+                                    <mat-label>Term</mat-label>
+                                    <mat-select>
+                                        <mat-option *ngFor="let term of terms">{{term}}</mat-option>
+                                    </mat-select>
+
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline" style="width: 100%;">
+                                    <mat-label>Year</mat-label>
+                                    <mat-select>
+                                        <mat-option *ngFor="let year of years">{{year}}</mat-option>
+                                    </mat-select>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-form-field appearance="outline" style="width: 100%;">
+
+                            <mat-checkbox color="primary">Allow students to enroll via entry code</mat-checkbox>
+                            <input disabled=true matInput>
+                        </mat-form-field>
+
+                        <h2>Grading Defaults</h2>
+                        <h5>Any newly created assignments will have these settings. Existing assignments won't be
+                            changed.</h5>
+                        <hr>
+                        <mat-form-field appearance="outline" style="width: 100%;">
+
+                            <mat-checkbox color="primary">Enable peergrading</mat-checkbox>
+                            <input disabled="true" matInput>
+                        </mat-form-field>
+                        <h2>TRUPEQA Parameters</h2>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="outline" style="width: 100%;">
+                                    <mat-label>&gamma;</mat-label>
+                                    <input matInput type="text">
+
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="outline" style="width: 100%;">
+                                    <mat-label>&mu;</mat-label>
+                                    <input matInput type="text">
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div style="width: 100%; padding: 5px; margin: 10px">
+                            <button mat-button
+                                style="margin-right: 20px; background-color: rgb(0, 53, 139); color: white ">Update
+                                Course </button>
+                            <button mat-button
+                                style="margin-right: 20px; background-color: rgb(248, 103, 103); color: white ">Delete
+                                Course <mat-icon style="margin-bottom: 0px; margin-left: 4px">delete</mat-icon></button>
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+                <div class="col mat-typography" style="margin: 5px">
+                    <div style="padding: 4px">
+                        <h2>Course Statistics</h2>
+                        <hr>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col">
+                                    <div>Assignments: <div class="mat-display-2"
+                                            style="margin-top: 3px; padding-bottom: 1px">{{dataSource.length}}</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div>Students: <div class="mat-display-2"
+                                            style="margin-top: 3px; padding-bottom: 1px">{{courseDetail.st_count}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div>TAs: <div class="mat-display-2" style="margin-top: 3px; padding-bottom: 1px">
+                                            {{courseDetail.ta_count}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div>Average: <div class="mat-display-2" style="margin-top: 3px; padding-bottom: 1px">
+                                    {{courseDetail.course_avg}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"
+                        style="border-style: dotted; border-color: rgb(0, 53, 139); border-radius: 10px; margin: 20px; padding-top: 7px">
+                        <h2>TRUPEQA parameters</h2>
+                        <hr>
+                        <div style="text-align: justify; padding: 0px; margin-top: 2px">
+                            <p>
+                                &mu; and &gamma; are the pre-required parameters for TRUPEQA algorithm to work.
+                                Instructor can change them in the course settings.
+                                &mu; and &gamma; will be calculated by TRUPEQA itself in the upcoming versions on the
+                                basis of class biasness by previous datas.
+                            </p>
+                        </div>
+                        <div class="row" style="padding: 0px; margin-bottom: 0px">
+                            <div class="col" style="padding-bottom: 10px; margin-bottom: 0px">
+                                <div>
+                                    <h3>&gamma; : </h3>
+                                    <div class="mat-display-1"
+                                        style="margin-top: 3px; padding-bottom: 1px; margin-bottom: 0px">
+                                        {{courseDetail.gamma}}</div>
+                                </div>
+                            </div>
+                            <div class="col" style="padding-bottom: 10px; margin-bottom: 0px">
+                                <h3>&mu; : </h3>
+                                <div class="mat-display-1" style="margin: 3px; padding-bottom: 1px; margin-bottom: 0px">
+                                    {{courseDetail.mu}}</div>
+                            </div>
+                        </div>
+
+                        <span style="padding-left: 10px "><a href="#">Refer to this before changing</a></span><br><br>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <button mat-button (click)="onGoBack()" style="margin-right: 20px; color: white; background-color: rgb(0, 16, 161) ">
+                Go back <mat-icon style="margin-bottom: 0px; margin-left: 4px">keyboard_arrow_left</mat-icon>
+            </button>
+
+        </div>
+    </mat-sidenav-content>
+
+
+</mat-sidenav-container>

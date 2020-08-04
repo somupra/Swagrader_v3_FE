@@ -1,0 +1,57 @@
+<h1 mat-dialog-title> Create Course </h1>
+<div mat-dialog-content>
+    <div class="row" style="margin-top: 30px">
+        <div class="col" style="margin-right: 30px">
+            <div style="margin-top: 10px;  border-radius: 5px; padding: 20px">
+                <form [formGroup]="form">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Course Number</mat-label>
+                        <input matInput type="text" formControlName="course_number" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Course Name</mat-label>
+                        <input matInput type="text" formControlName="course_title" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Course Description</mat-label>
+                        <textarea matInput formControlName="course_description" required></textarea>
+                    </mat-form-field>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline" style="width: 100%;">
+                                <mat-label>Term</mat-label>
+                                <mat-select formControlName="term">
+                                    <mat-option *ngFor="let term of terms" [value]=term>{{term}}</mat-option>
+                                </mat-select>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline" style="width: 100%;">
+                                <mat-label>Year</mat-label>
+                                <mat-select formControlName="year">
+                                    <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+                                </mat-select>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <mat-checkbox matInput formControlName="entry_restricted" color="primary">
+                        Allow students to enroll via entry code</mat-checkbox>
+
+                    <div style="width: 100%; padding: 5px; margin: 10px">
+                        <button mat-button style=" background-color: rgb(0, 53, 139); color: white "
+                            (click)="save()">Create Course </button>
+                    </div>
+                    <div style="width: 100%; padding: 5px; margin: 10px">
+                        <button mat-button style=" background-color: rgb(0, 53, 139); color: white "
+                            (click)="close()"> Cancel </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+</div>
